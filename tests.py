@@ -22,4 +22,8 @@ class PolyLabelTestCast(unittest.TestCase):
 
     def test_watter2(self):
         water2 = json.load(open("./fixtures/water2.json", "r"))
-        self.assertEquals(polylabel(water2, 1),[3263.5, 3263.5])
+        self.assertEquals(polylabel(water2, 1), [3263.5, 3263.5])
+
+
+if __name__ == '__main__':
+    unittest.main()

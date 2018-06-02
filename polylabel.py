@@ -1,6 +1,14 @@
-from queue import PriorityQueue
-from math import sqrt, inf
+from math import sqrt
 import time
+
+try:
+    # Python3
+    from queue import PriorityQueue
+    from math import inf
+except ImportError:
+    # Python2
+    from Queue import PriorityQueue
+    inf = float("inf")
 
 
 def _point_to_polygon_distance(x, y, polygon):
@@ -95,7 +103,7 @@ def polylabel(polygon, precision=1.0, debug=False):
     width = max_x - min_x
     height = max_y - min_y
     cell_size = min(width, height)
-    h = cell_size / 2
+    h = cell_size / 2.0
 
     cell_queue = PriorityQueue()
 
