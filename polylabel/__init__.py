@@ -111,10 +111,14 @@ def polylabel(polygon, precision=1.0, debug=False):
         return [min_x, min_y]
 
     # cover polygon with initial cells
-    for x in range(min_x, max_x, int(cell_size)):
-        for y in range(min_y, max_y, int(cell_size)):
+    x = min_x
+    while x < max_x:
+        y = min_y
+        while y < max_y:
             c = Cell(x + h, y + h, h, polygon)
+            y += cell_size
             cell_queue.put((-c.max, time.time(), c))
+        x += cell_size
 
     best_cell = _get_centroid_cell(polygon)
 
@@ -130,7 +134,8 @@ def polylabel(polygon, precision=1.0, debug=False):
             best_cell = cell
 
             if debug:
-                print('found best {} after {} probes'.format(round(1e4 * cell.d) / 1e4, num_of_probes))
+                print('found best {} after {} probes'.format(
+                    round(1e4 * cell.d) / 1e4, num_of_probes))
 
         if cell.max - best_cell.d <= precision:
             continue
