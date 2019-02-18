@@ -83,7 +83,7 @@ def _get_centroid_cell(polygon):
     pass
 
 
-def polylabel(polygon, precision=1.0, debug=False):
+def polylabel(polygon, precision=1.0, debug=False, with_distance=False):
     # find bounding box
     first_item = polygon[0][0]
     min_x = first_item[0]
@@ -108,7 +108,10 @@ def polylabel(polygon, precision=1.0, debug=False):
     cell_queue = PriorityQueue()
 
     if cell_size == 0:
-        return [min_x, min_y]
+        if with_distance:
+            return [min_x, min_y], None
+        else:
+            return [min_x, min_y]
 
     # cover polygon with initial cells
     x = min_x
@@ -154,5 +157,7 @@ def polylabel(polygon, precision=1.0, debug=False):
     if debug:
         print('num probes: {}'.format(num_of_probes))
         print('best distance: {}'.format(best_cell.d))
-
-    return [best_cell.x, best_cell.y]
+    if with_distance:
+        return [best_cell.x, best_cell.y], best_cell.d
+    else:
+        return [best_cell.x, best_cell.y]

@@ -20,4 +20,7 @@ pip install python-polylabel
 from polylabel import polylabel
 
 polylabel([[[0, 0], [1, 0], [2, 0], [0, 0]]])  # [0, 0]
+
+polylabel([[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]], with_distance=True)  # ([0.5, 0.5], 0.5)
+
 ```

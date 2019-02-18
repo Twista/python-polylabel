@@ -1,5 +1,6 @@
-import unittest
 import json
+import unittest
+
 from polylabel import polylabel
 
 
@@ -10,11 +11,16 @@ class PolyLabelTestCast(unittest.TestCase):
             short = json.load(f)
             self.assertEqual(polylabel(short), [3317.546875, 1330.796875])
 
+    def test_distance(self):
+        with open("./fixtures/short.json", "r") as f:
+            short = json.load(f)
+            self.assertEqual(polylabel(short, with_distance=True), ([3317.546875, 1330.796875], 5.4406249999999545))
+
     def test_watter1(self):
         with open("./fixtures/water1.json", "r") as f:
             water1 = json.load(f)
             self.assertEqual(polylabel(water1), [
-                              3865.85009765625, 2124.87841796875])
+                3865.85009765625, 2124.87841796875])
             self.assertEqual(polylabel(water1, 50), [3854.296875, 2123.828125])
 
     def test_float(self):
