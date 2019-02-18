@@ -11,8 +11,14 @@ class PolyLabelTestCast(unittest.TestCase):
 
     def test_watter1(self):
         water1 = json.load(open("./fixtures/water1.json", "r"))
-        self.assertEquals(polylabel(water1), [3865.85009765625, 2124.87841796875])
+        self.assertEquals(polylabel(water1), [
+                          3865.85009765625, 2124.87841796875])
         self.assertEquals(polylabel(water1, 50), [3854.296875, 2123.828125])
+
+    def test_float(self):
+        float = json.load(open("./fixtures/float.json", "r"))
+        self.assertEqual(polylabel(float),
+                         [-23.210525613080737, 24.425270860193958])
 
     def test_works_on_degenerate_polygons(self):
         out = polylabel([[[0, 0], [1, 0], [2, 0], [0, 0]]])
