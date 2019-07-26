@@ -8,6 +8,7 @@ try:
 except ImportError:
     # Python2
     from Queue import PriorityQueue
+
     inf = float("inf")
 
 
@@ -62,6 +63,21 @@ class Cell(object):
         self.x = x
         self.d = _point_to_polygon_distance(x, y, polygon)
         self.max = self.d + self.h * sqrt(2)
+
+    def __lt__(self, other):
+        return self.max < other.max
+
+    def __lte__(self, other):
+        return self.max <= other.max
+
+    def __gt__(self, other):
+        return self.max > other.max
+
+    def __gte__(self, other):
+        return self.max >= other.max
+
+    def __eq__(self, other):
+        return self.max == other.max
 
 
 def _get_centroid_cell(polygon):

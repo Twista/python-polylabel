@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="python-polylabel",
-    version="0.5",
+    version="0.6",
     author='Michal Hatak',
     author_email='me@twista.cz',
     packages=find_packages(),

@@ -27,6 +27,9 @@ polylabel([[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]], with_distance=True)  # ([0
 
 ## Changelog
 
+**0.6**
+- fix problem with Queue on windows (support comparison on Cell class) [#5](https://github.com/Twista/python-polylabel/issues/5)
+
 **0.5**
 - add support for floats in polygon
 
